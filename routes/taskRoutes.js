@@ -24,7 +24,7 @@ router.get('/allTasks', async (_, res) => {
     }
 } );
 
-router.get('/short', async (_, res) => {
+router.get('/shortTasks', async (_, res) => {
     try {
         const shortTask = await listShortnessTasks();
         res.status(200).json(shortTask);
@@ -34,7 +34,7 @@ router.get('/short', async (_, res) => {
 } );
 
 
-router.get('/completed', async (_, res) => {
+router.get('/completedTasks', async (_, res) => {
     try {
         const completedTask = await listCompletedTasks();
         res.status(200).json(completedTask);
@@ -43,7 +43,7 @@ router.get('/completed', async (_, res) => {
     }
 });
 
-router.get('/ongoing', async (_, res) => {
+router.get('/ongoingTasks', async (_, res) => {
     try {
         const tasks = await listOngoingTasks();
         res.status(200).json(tasks);
@@ -52,7 +52,7 @@ router.get('/ongoing', async (_, res) => {
     }
 });
 
-router.get('/overdue', async (_, res) => {
+router.get('/overdueTasks', async (_, res) => {
     try {
         const tasks = await listOverdueTasks();
         res.status(200).json(tasks);
@@ -61,7 +61,7 @@ router.get('/overdue', async (_, res) => {
     }
 });
 
-router.put ('/update/:id', async (req,res) => {
+router.put ('/updateTask/:id', async (req,res) => {
     try {
         const updatedTask = await updateTask(req.params.id, req.body);
         res.status(200).json(updatedTask); // Correção aqui
@@ -70,7 +70,7 @@ router.put ('/update/:id', async (req,res) => {
     }
 });
 
-router.delete('/delete/:id', async (req,res) => {
+router.delete('/deleteTask/:id', async (req,res) => {
     try {
         await deleteTask (req.params.id);
     } catch (error) {
@@ -78,7 +78,7 @@ router.delete('/delete/:id', async (req,res) => {
     }
 });
 
-router.delete('/deleteAll', async (_, res) => {
+router.delete('/deleteAllTasks', async (_, res) => {
     try {
         await deleteAllTasks();
         res.status(204).send();
